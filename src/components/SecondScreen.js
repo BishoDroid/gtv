@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import api from '../services/api';
+import appConfig from '../config/AppConfig';
+import Header from '../components/Header';
+
 import {
     StyleSheet,
     View,
@@ -20,6 +24,8 @@ export default class SecondScreen extends Component {
 
     this.state = {
       isLoading: false,
+      accounts: [],
+      bics: ['BKENGB2L','MARKDEFF']
     };
 
     this._onPress = this._onPress.bind(this);
@@ -42,24 +48,33 @@ export default class SecondScreen extends Component {
     }, 500);
   }
 
+  componentWillMount() {
+
+    let { bics } = this.state;
+    let details = [];
+    for (let i = 0; i < bics.length; i++) {
+      api.post("otapi/"+bics[i]+"/account/details", appConfig.requestJson)
+      .then(response => {
+          details.push({ bic: bics[i], value: response.data })
+          this.setState({ accounts: details })
+      });
+    }
+    
+  }
+
+  renderAccounts(){
+    return this.state.accounts.map( account => <Text key={account.value.identification.iban}>{account.value.identification.iban}</Text>);
+  }
+
+
   render() {
-    const changeScale = this.growAnimated.interpolate({
-      inputRange: [0, 1],
-      outputRange: [1, SIZE],
-    });
+    console.log(this.state.accounts);
+
 
     return (
       <View style={styles.container}>
-        <Text> Welcome to GTV</Text>
-        <TouchableOpacity
-          onPress={this._onPress}
-          style={styles.button}
-          activeOpacity={1}>
-          <Image style={styles.image} source={arrowImg} />
-        </TouchableOpacity>
-        <Animated.View
-          style={[styles.circle, {transform: [{scale: changeScale}]}]}
-        />
+      <Header headerText={'Accounts'}></Header>
+        {this.renderAccounts()}
       </View>
     );
   }
@@ -67,10 +82,7 @@ export default class SecondScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    margin: 20,
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
+    flex: 1
   },
   button: {
     alignItems: 'center',

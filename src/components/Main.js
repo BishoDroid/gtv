@@ -19,7 +19,7 @@ export default class Main extends Component {
                     <Scene key="secondScreen"
                            component={SecondScreen}
                            animation='fade'
-                           hideNavBar={false}
+                           hideNavBar={true}
                     />
                 </Scene>
             </Router>
