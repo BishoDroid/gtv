@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     right: 28,
   },
   iconEye: {
+    marginTop: 6,
     width: 25,
     height: 25,
     tintColor: 'rgba(0,0,0,0.2)',
