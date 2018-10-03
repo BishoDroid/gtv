@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
-  StyleSheet,
-  View,
-  Image,
-  TouchableOpacity,
-  Animated,
-  Easing,
+    StyleSheet,
+    View,
+    Image,
+    TouchableOpacity,
+    Animated,
+    Easing, Text,
 } from 'react-native';
 import {Actions, ActionConst} from 'react-native-router-flux';
 
@@ -50,6 +50,7 @@ export default class SecondScreen extends Component {
 
     return (
       <View style={styles.container}>
+        <Text> Welcome to GTV</Text>
         <TouchableOpacity
           onPress={this._onPress}
           style={styles.button}
