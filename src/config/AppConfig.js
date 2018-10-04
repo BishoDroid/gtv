@@ -62,5 +62,220 @@ export default {
         "hal_links": [
           "a"
         ]
+      },
+    posting: [
+      {
+        "bic": "BKENGB2L",
+        "account_postings": [
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "BOOK",
+            "bic": "BKENGB2L",
+            "amount": {
+              "currency": "GBP",
+              "Amount": "10000,",
+            },
+            "date_and_time": "2018-08-09T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "BOOK",
+            "bic": "BKENGB2L",
+            "amount": {
+              "currency": "GBP",
+              "Amount": "500,"
+            },
+            "date_and_time": "2018-08-09T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "BOOK",
+            "bic": "BKENGB2L",
+            "amount": {
+              "currency": "GBP",
+              "Amount": "85000,"
+            },
+            "date_and_time": "2018-08-09T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "BOOK",
+            "bic": "BKENGB2L",
+            "amount": {
+              "currency": "GBP",
+              "Amount": "5000,"
+            },
+            "date_and_time": "2018-08-09T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "PDNG",
+            "bic": "BKENGB2L",
+            "amount": {
+              "currency": "GBP",
+              "Amount": "5000,"
+            },
+            "date_and_time": "2018-08-09T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "DBIT",
+            "status": "PDNG",
+            "bic": "BKENGB2L",
+            "amount": {
+              "currency": "GBP",
+              "Amount": "5000,"
+            },
+            "date_and_time": "2018-08-09T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "DBIT",
+            "status": "PDNG",
+            "bic": "BKENGB2L",
+            "amount": {
+              "currency": "GBP",
+              "Amount": "500,"
+            },
+            "date_and_time": "2018-08-09T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "BOOK",
+            "bic": "MARKDEFF",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "10000"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "BOOK",
+            "bic": "MARKDEFF",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "500"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "BOOK",
+            "bic": "MARKDEFF",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "85000"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "BOOK",
+            "bic": "MARKDEFF",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "5000"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "PDNG",
+            "bic": "MARKDEFF",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "5000"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "DBIT",
+            "status": "PDNG",
+            "bic": "MARKDEFF",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "5000"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "DBIT",
+            "status": "PDNG",
+            "bic": "MARKDEFF",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "500"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          }
+        ]
+      },{
+        "bic": "MARKDEFF",
+        "account_postings": [
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "BOOK",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "10000"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "BOOK",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "500"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "BOOK",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "85000"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "BOOK",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "5000"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "CRDT",
+            "status": "PDNG",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "5000"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "DBIT",
+            "status": "PDNG",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "5000"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          },
+          {
+            "credit_debit_indicator": "DBIT",
+            "status": "PDNG",
+            "amount": {
+              "currency": "EUR",
+              "Amount": "500"
+            },
+            "date_and_time": "2018-08-07T00:00:00.0Z"
+          }
+        ]
       }
+      
+    ]
   }

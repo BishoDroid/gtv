@@ -36,7 +36,7 @@ export default class HomeScreen extends Component{
                     <Button onPress={()=>Actions.secondScreen()} title={"Accounts"} style={{ width: 300, height: 50, marginTop: 20 }}/>
                 </View>
                 <View style={{marginTop: 20, paddingRight: 30, paddingLeft: 30}}>
-                    <Button title={"Postings"} style={{ width: 300, height: 50, marginTop: 20 }}/>
+                    <Button onPress={()=>Actions.postingScreen()} title={"Postings"} style={{ width: 300, height: 50, marginTop: 20 }}/>
                 </View>
             </Wallpaper>
         )

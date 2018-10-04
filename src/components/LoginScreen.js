@@ -15,6 +15,39 @@ export default class LoginScreen extends Component {
         }
     }
 
+    componentDidMount() {
+        this.checkDeviceForHardware();
+    }
+
+    checkDeviceForHardware = async () => {
+        let compatible = await Expo.LocalAuthentication.hasHardwareAsync();
+        this.setState({compatible});
+        if (!compatible) {
+            this.showIncompatibleAlert();
+        }
+    };
+    showIncompatibleAlert = () => {
+        this.dropdown.alertWithType(
+            'error',
+            'Incompatible Device',
+            'Current device does not have the necessary hardware to use this API.'
+        );
+    };
+
+    showAndroidAlert = () => {
+        this.setState({dialogVisible: true});
+        this.scanBiometrics();
+    };
+    scanBiometrics = async () => {
+        let result = await Expo.LocalAuthentication.authenticateAsync('Biometric Scan.');
+        if (result.success) {
+            this.setState({dialogVisible: false});
+            Actions.secondScreen();
+        } else {
+            Alert.Alert.alert('Uh oh!', 'Bio-Authentication failed or canceled.');
+        }
+    };
+
     render() {
         return (
             <Wallpaper>
