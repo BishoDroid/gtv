@@ -1,15 +1,17 @@
 import React, {Component} from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {ScrollView, StyleSheet, Text, View} from "react-native";
 import { Button } from 'react-native';
+import Dialog from "react-native-simple-dialogs/src/Dialog";
 
 export default class AccountDetails extends Component {
     constructor(props) {
         super(props);
         this._onPress = this._onPress.bind(this);
+        this.state = { dialogVisible : false };
     }
 
     _onPress() {
-
+        this.setState({dialogVisible : true});
     }
 
     render() {
@@ -29,10 +31,39 @@ export default class AccountDetails extends Component {
                 <Text style={{color: 'white'}}>{this.props.credDeb}</Text>
                 <Button
                     onPress={this._onPress}
-                    title="Show postings"
+                    title="Show posting"
                     color="orange"
-                    accessibilityLabel="Learn more about this purple button"
                 />
+                <Dialog
+                    visible={this.state.dialogVisible}
+                    title={this.props.bic + ' postings'}
+                    onTouchOutside={() => this.setState({dialogVisible: false})}
+                    animationType="fade">
+                    <View>
+                        <ScrollView style={{height:450}}>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                            <Text>BFIIFI to NFFMFM</Text>
+                        </ScrollView>
+                        <Button
+                            onPress={()=>{this.setState({dialogVisible: false})}}
+                            title="Close"
+                            color="blue"
+                        />
+                    </View>
+                </Dialog>
+
             </View>
         );
     }
@@ -54,5 +85,8 @@ const styles = StyleSheet.create({
         borderColor: '#cecece',
         borderWidth: 1,
         padding: 10
+    },
+    dialog: {
+
     }
 });
