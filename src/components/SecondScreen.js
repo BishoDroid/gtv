@@ -174,7 +174,7 @@ export default class SecondScreen extends Component {
         //});
         return (
             <Wallpaper>
-                <Header headerText={'Accounts'}>
+                <Header headerText={'Accounts of CITI Bank'}>
                     {}
                 </Header>
                 <Accordion
