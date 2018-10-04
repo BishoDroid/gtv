@@ -59,7 +59,7 @@ export default class SecondScreen extends Component {
 
         this.timerID = setInterval(
             () => this.sendReq(),
-            Math.ceil(Math.random() * (2000 - 1000) + 1000)
+            Math.ceil(Math.random() * (3000 - 1000) + 1000)
         );
     }
 
@@ -82,7 +82,7 @@ export default class SecondScreen extends Component {
             },
             {   bic : 'MARKDEFF',
                 iban : 'AE89370400440232013000',
-                memberId : 'Member B1',
+                memberId : 'Membefr B1',
                 currency : 'EUR',
                 credDeb : 'Credit',
                 balance :(Math.random() * (50000 - 15000) + 20000).toFixed(2),
@@ -145,7 +145,7 @@ export default class SecondScreen extends Component {
         if ((parseFloat(data.balance) <= 23000.00) && (this.oldBalance[idx] > 23000.00)) {
             this.oldBalance[idx] = parseFloat(data.balance);
             let msg = {
-                title: data.bic + ' balance is bellow minimum threshold',
+                title: data.bic + ' balance is bellow minimum value',
                 body: 'Current balance ' + data.currency + ' ' + data.balance + ' is below the minimum value.'
             };
             this.sendBellowMinimumValueNotification(msg);
@@ -157,7 +157,7 @@ export default class SecondScreen extends Component {
             /*<View style={styles.content}>
                 <Text style={styles.contentText}>{section.content}</Text>
             </View>*/
-            <AccountDetails memberId={data.memberId} currency={data.currency} balance={data.balance} credDeb={data.credDeb} />
+            <AccountDetails bic={data.bic} memberId={data.memberId} currency={data.currency} balance={data.balance} credDeb={data.credDeb} />
         );
     };
 
