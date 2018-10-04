@@ -9,11 +9,12 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "apisauce": "^0.16.0",
     "expo": "^30.0.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
-    "react-native-router-flux": "^4.0.5"
-   
+    "react-native-accordion": "^1.0.1",
+    "react-native-collapsible": "^1.0.1",
+    "react-native-router-flux": "latest",
+    "apisauce": "^0.16.0"
   }
 }
