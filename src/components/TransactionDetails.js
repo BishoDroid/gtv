@@ -1,9 +1,33 @@
 import React, {Component} from "react";
 import {StyleSheet, Text, View} from "react-native";
+import axios from 'axios';
 
 export default class TransactionDetails extends Component {
     constructor(props) {
         super(props);
+        this.state = {};
+        this.sendReq = this.sendReq.bind(this);
+        this.handleResp = this.handleResp.bind(this)
+    }
+
+    componentDidMount() {
+        this.timerID = setInterval(
+            () => this.sendReq(),
+            1000
+        );
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
+
+    sendReq() {
+        axios.get('https://api.github.com/users/maecapozzi')
+            .then(response => this.handleResp(response))
+    }
+
+    handleResp(resp) {
+
     }
 
     render() {
