@@ -9,17 +9,17 @@ import AccountDetails from "../components/AccountDetails";
 const SIZE = 40;
 const SECTIONS = [
     {
-        title: 'CITIUS33',
+        title: 'MARKDEFF',
         content: 'Lorem hola...',
         idx: 0
     },
     {
-        title: 'CITGB22',
+        title: 'BKENGB2L',
         content: 'Lorem bana...',
         idx: 1
     },
     {
-        title: 'CITIAU44',
+        title: 'EEANGBYL',
         content: 'Lorem bananana...',
         idx: 2
     }
@@ -64,7 +64,7 @@ export default class SecondScreen extends Component {
 
         this.timerID = setInterval(
             () => this.sendReq(),
-            2000
+            Math.ceil(Math.random() * (3000 - 1000) + 1000)
         );
     }
 
@@ -78,7 +78,7 @@ export default class SecondScreen extends Component {
 
         this.data = [
             {
-                bic: 'BKENGB2L',
+                bic: 'MARKDEFF',
                 iban: 'DE89370400440532013000',
                 memberId: 'Member A',
                 currency: 'USD',
@@ -96,7 +96,7 @@ export default class SecondScreen extends Component {
                 dateTime: d
             },
             {
-                bic: 'BKENGB2L',
+                bic: 'EEANGBYL',
                 iban: 'RE89370400440432013000',
                 memberId: 'Member C',
                 credDeb: 'Debit',
@@ -136,18 +136,16 @@ export default class SecondScreen extends Component {
     _renderContent = section => {
         let idx = section.idx;
         let data = this.data[idx];
-        console.log("Render\n");
         return (
             /*<View style={styles.content}>
              <Text style={styles.contentText}>{section.content}</Text>
              </View>*/
-            <AccountDetails memberId={data.memberId} currency={data.currency} balance={data.balance}
+            <AccountDetails bic={data.bic} memberId={data.memberId} currency={data.currency} balance={data.balance}
                             credDeb={data.credDeb}/>
         );
     };
 
     _updateSections = activeSections => {
-        console.log("Update");
         this.setState(
             {isLoading: false, activeSections: activeSections}
         );
