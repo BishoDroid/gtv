@@ -25,11 +25,14 @@ export default class SecondScreen extends Component {
     this.state = {
       isLoading: false,
       accounts: [],
-      bics: ['BKENGB2L','MARKDEFF']
     };
 
+    this.bics = ['BKENGB2L','MARKDEFF'];
     this._onPress = this._onPress.bind(this);
     this.growAnimated = new Animated.Value(0);
+
+    this.sendReq = this.sendReq.bind(this);
+    this.renderAccounts = this.renderAccounts.bind(this);
   }
 
   _onPress() {
@@ -49,21 +52,61 @@ export default class SecondScreen extends Component {
   }
 
   componentWillMount() {
+    this.sendReq();
 
-    let { bics } = this.state;
-    let details = [];
-    for (let i = 0; i < bics.length; i++) {
-      api.post("otapi/"+bics[i]+"/account/details", appConfig.requestJson)
-      .then(response => {
-          details.push({ bic: bics[i], value: response.data })
-          this.setState({ accounts: details })
-      });
-    }
-    
+    this.timerID = setInterval(
+        () => this.sendReq(),
+        1000
+    );
+  }
+
+  componentWillUnmount() {
+      clearInterval(this.timerID);
+  }
+
+  sendReq() {
+    /* Mock data. */
+    let d = new Date().toISOString();
+
+    let data = [
+        {   bic : 'BKENGB2L',
+            iban : 'DE89370400440532013000',
+            memberId : 'Member A',
+            currency : 'USD',
+            balance : (Math.random() * (20000 - 10000) + 10000).toFixed(2),
+            dateTime: d
+        },
+        {   bic : 'BKENGB2L',
+            iban : 'AE89370400440232013000',
+            memberId : 'Member B',
+            currency : 'EUR',
+            balance :(Math.random() * (50000 - 20000) + 20000).toFixed(2),
+            dateTime : d
+        },
+        {   bic : 'BKENGB2L',
+            iban : 'RE89370400440432013000',
+            memberId : 'Member C',
+            currency : 'MYR',
+            balance : (Math.random() * (10000 - 5000) + 5000).toFixed(2),
+            dateTime : d
+        }
+    ];
+
+    //let { bics } = this.bics;
+    //let details = [];
+    /*for (let i = 0; i < bics.length; i++) {
+        api.post("otapi/" + bics[i] + "/account/details", appConfig.requestJson)
+            .then(response => {
+                details.push({ bic: bics[i], value: response.data })
+                this.setState({ accounts: details })
+            });
+    }*/
+    this.setState({ accounts: data });
   }
 
   renderAccounts(){
-    return this.state.accounts.map( account => <Text key={account.value.identification.iban}>{account.value.identification.iban}</Text>);
+    //return //this.state.accounts.map( account => <Text key={account.value.identification.iban}>{account.value.identification.iban}</Text>);
+      return this.state.accounts.map( account => <Text key={account.iban}>{account.currency + ' ' + account.balance}</Text>);
   }
 
 
