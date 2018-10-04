@@ -2,6 +2,9 @@ import React, {Component} from "react";
 import {Animated, Easing, StyleSheet, Text, View} from "react-native";
 import {Actions} from "react-native-router-flux";
 import Accordion from "react-native-collapsible/Accordion";
+import api from '../services/api';
+import appConfig from '../config/AppConfig';
+import Header from '../components/Header';
 
 const SIZE = 40;
 const SECTIONS = [
@@ -20,20 +23,30 @@ export default class SecondScreen extends Component {
         super();
         this.state = {
             isLoading: false,
-            activeSections: []
+            activeSections: [],
+            accounts: [],
+            bics: ['BKENGB2L','MARKDEFF']
         };
 
         this._onPress = this._onPress.bind(this);
         this.growAnimated = new Animated.Value(0);
     }
 
-    _renderSectionTitle = section => {
-        return (
-            <View style={styles.content}>
-                <Text>{section.content}</Text>
-            </View>
-        );
-    };
+    componentWillMount() {
+        let { bics } = this.state;
+        let details = [];
+        for (let i = 0; i < bics.length; i++) {
+            api.post("otapi/"+bics[i]+"/account/details", appConfig.requestJson)
+                .then(response => {
+                    details.push({ bic: bics[i], value: response.data })
+                    this.setState({ accounts: details })
+                });
+        }
+
+    }
+    renderAccounts(){
+        return this.state.accounts.map( account => <Text key={account.value.identification.iban}>{account.value.identification.iban}</Text>);
+    }
 
     _renderHeader = section => {
         return (
@@ -77,12 +90,18 @@ export default class SecondScreen extends Component {
             outputRange: [1, SIZE],
         });
         return (
+        <View>
+            <Header headerText={'Accounts'}>
+                {this.renderAccounts()}
+            </Header>
             <Accordion
                 sections={SECTIONS}
                 activeSections={this.state.activeSections}
                 renderHeader={this._renderHeader}
                 renderContent={this._renderContent}
                 onChange={this._updateSections}/>
+        </View>
+
         );
     }
 }
