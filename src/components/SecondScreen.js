@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Animated, Easing, StyleSheet, Text, View} from "react-native";
+import {Animated, Easing, Keyboard, StyleSheet, Text, View} from "react-native";
 import {Actions} from "react-native-router-flux";
 import Accordion from "react-native-collapsible/Accordion";
 import api from '../services/api';
@@ -7,6 +7,7 @@ import appConfig from '../config/AppConfig';
 import Header from '../components/Header';
 import Wallpaper from "./Wallpaper";
 import AccountDetails from '../components/AccountDetails';
+import {Notifications} from "expo";
 
 const SIZE = 40;
 const SECTIONS = [
@@ -40,6 +41,8 @@ export default class SecondScreen extends Component {
         this.growAnimated = new Animated.Value(0);
         this.sendReq = this.sendReq.bind(this);
         this.renderAccounts = this.renderAccounts.bind(this);
+        this.sendBellowMinimumValueNotification = this.sendBellowMinimumValueNotification.bind(this);
+        this.oldBalance = [23500, 23500, 23500, 23500];
     }
 
     componentWillMount() {
@@ -56,7 +59,7 @@ export default class SecondScreen extends Component {
 
         this.timerID = setInterval(
             () => this.sendReq(),
-            Math.ceil(Math.random() * (3000 - 1000) + 1000))
+            Math.ceil(Math.random() * (2000 - 1000) + 1000)
         );
     }
 
@@ -74,18 +77,18 @@ export default class SecondScreen extends Component {
                 memberId : 'Member A',
                 currency : 'USD',
                 credDeb : 'Credit',
-                balance : (Math.random() * (20000 - 10000) + 10000).toFixed(2),
+                balance : (Math.random() * (30000 - 10000) + 10000).toFixed(2),
                 dateTime: d
             },
-            {   bic : 'BKENGB2L',
+            {   bic : 'MARKDEFF',
                 iban : 'AE89370400440232013000',
                 memberId : 'Member B1',
                 currency : 'EUR',
                 credDeb : 'Credit',
-                balance :(Math.random() * (50000 - 20000) + 20000).toFixed(2),
+                balance :(Math.random() * (50000 - 15000) + 20000).toFixed(2),
                 dateTime : d
             },
-            {   bic : 'BKENGB2L',
+            {   bic : 'BERKDETF',
                 iban : 'RE89370400440432013000',
                 memberId : 'Member C',
                 credDeb : 'Debit',
@@ -107,6 +110,21 @@ export default class SecondScreen extends Component {
         this.setState({ accounts: data });
     }
 
+    sendBellowMinimumValueNotification(msg) {
+        Keyboard.dismiss();
+
+
+        const schedulingOptions = {
+            time: new Date().getTime() + 500
+        }
+
+        // Notifications show only when app is not active.
+        // (ie. another app being used or device's screen is locked)
+        Notifications.scheduleLocalNotificationAsync(
+            msg, schedulingOptions
+        );
+    }
+
 
     renderAccounts(){
         return this.state.accounts.map( acc => <AccountDetails key={acc.iban} memberId={acc.memberId} currency={acc.currency} balance={acc.balance} credDeb={acc.credDeb}/>);
@@ -123,7 +141,18 @@ export default class SecondScreen extends Component {
     _renderContent = section => {
         let idx = section.idx;
         let data = this.state.accounts[idx];
-        console.log("Render\n");
+
+        if ((parseFloat(data.balance) <= 23000.00) && (this.oldBalance[idx] > 23000.00)) {
+            this.oldBalance[idx] = parseFloat(data.balance);
+            let msg = {
+                title: data.bic + ' balance is bellow minimum threshold',
+                body: 'Current balance ' + data.currency + ' ' + data.balance + ' is below the minimum value.'
+            };
+            this.sendBellowMinimumValueNotification(msg);
+        }
+
+        if (parseFloat(data.balance) > 23000.00) {this.oldBalance[idx] = parseFloat(data.balance);};
+
         return (
             /*<View style={styles.content}>
                 <Text style={styles.contentText}>{section.content}</Text>
@@ -133,7 +162,6 @@ export default class SecondScreen extends Component {
     };
 
     _updateSections = activeSections => {
-        console.log("Update");
         this.setState(
             {isLoading: false, activeSections: activeSections}
             );
