@@ -12,7 +12,9 @@ import {
 } from 'react-native';
 
 import Main from './src/components/Main';
-
+import {createStackNavigator,} from 'react-navigation';
+import HomeScreen from "./src/components/HomeScreen";
+import SecondScreen from "./src/components/SecondScreen";
 
 
 export default class loginAnimation extends Component {
@@ -73,3 +75,4 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('loginAnimation', () => loginAnimation);
+

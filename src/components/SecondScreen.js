@@ -2,32 +2,40 @@ import React, {Component} from "react";
 import {Animated, Easing, StyleSheet, Text, View} from "react-native";
 import {Actions} from "react-native-router-flux";
 import Accordion from "react-native-collapsible/Accordion";
-import api from '../services/api';
-import appConfig from '../config/AppConfig';
-import Header from '../components/Header';
+import Header from "../components/Header";
 import Wallpaper from "./Wallpaper";
-import AccountDetails from '../components/AccountDetails';
+import AccountDetails from "../components/AccountDetails";
 
 const SIZE = 40;
 const SECTIONS = [
     {
-        title: 'BKENGB2L',
+        title: 'CITIUS33',
         content: 'Lorem hola...',
         idx: 0
     },
     {
-        title: 'MARKDEFF',
+        title: 'CITGB22',
         content: 'Lorem bana...',
         idx: 1
     },
     {
-        title: 'BERKDETF',
+        title: 'CITIAU44',
         content: 'Lorem bananana...',
         idx: 2
     }
 ];
 
 export default class SecondScreen extends Component {
+    static navigationOptions = {
+        drawerLabel: 'Home',
+        drawerIcon: ({tintColor}) => (
+            <Image
+                source={require('../images/logo.png')}
+                style={[styles.icon, {tintColor: tintColor}]}
+            />
+        ),
+    };
+
     constructor() {
         super();
         this.state = {
@@ -44,14 +52,14 @@ export default class SecondScreen extends Component {
 
     componentWillMount() {
         /*let { bics } = this.state;
-        let details = [];
-        for (let i = 0; i < bics.length; i++) {
-            api.post("otapi/"+bics[i]+"/account/details", appConfig.requestJson)
-                .then(response => {
-                    details.push({ bic: bics[i], value: response.data })
-                    this.setState({ accounts: details })
-                });
-        }*/
+         let details = [];
+         for (let i = 0; i < bics.length; i++) {
+         api.post("otapi/"+bics[i]+"/account/details", appConfig.requestJson)
+         .then(response => {
+         details.push({ bic: bics[i], value: response.data })
+         this.setState({ accounts: details })
+         });
+         }*/
         this.sendReq();
 
         this.timerID = setInterval(
@@ -69,47 +77,52 @@ export default class SecondScreen extends Component {
         let d = new Date().toISOString();
 
         this.data = [
-            {   bic : 'BKENGB2L',
-                iban : 'DE89370400440532013000',
-                memberId : 'Member A',
-                currency : 'USD',
-                credDeb : 'Credit',
-                balance : (Math.random() * (20000 - 10000) + 10000).toFixed(2),
+            {
+                bic: 'BKENGB2L',
+                iban: 'DE89370400440532013000',
+                memberId: 'Member A',
+                currency: 'USD',
+                credDeb: 'Credit',
+                balance: (Math.random() * (20000 - 10000) + 10000).toFixed(2),
                 dateTime: d
             },
-            {   bic : 'BKENGB2L',
-                iban : 'AE89370400440232013000',
-                memberId : 'Member B1',
-                currency : 'EUR',
-                credDeb : 'Credit',
-                balance :(Math.random() * (50000 - 20000) + 20000).toFixed(2),
-                dateTime : d
+            {
+                bic: 'BKENGB2L',
+                iban: 'AE89370400440232013000',
+                memberId: 'Member B1',
+                currency: 'EUR',
+                credDeb: 'Credit',
+                balance: (Math.random() * (50000 - 20000) + 20000).toFixed(2),
+                dateTime: d
             },
-            {   bic : 'BKENGB2L',
-                iban : 'RE89370400440432013000',
-                memberId : 'Member C',
-                credDeb : 'Debit',
-                currency : 'MYR',
-                balance : (Math.random() * (10000 - 5000) + 5000).toFixed(2),
-                dateTime : d
+            {
+                bic: 'BKENGB2L',
+                iban: 'RE89370400440432013000',
+                memberId: 'Member C',
+                credDeb: 'Debit',
+                currency: 'MYR',
+                balance: (Math.random() * (10000 - 5000) + 5000).toFixed(2),
+                dateTime: d
             }
         ];
 
         //let { bics } = this.bics;
         //let details = [];
         /*for (let i = 0; i < bics.length; i++) {
-            api.post("otapi/" + bics[i] + "/account/details", appConfig.requestJson)
-                .then(response => {
-                    details.push({ bic: bics[i], value: response.data })
-                    this.setState({ accounts: details })
-                });
-        }*/
-        this.setState({ accounts: this.data });
+         api.post("otapi/" + bics[i] + "/account/details", appConfig.requestJson)
+         .then(response => {
+         details.push({ bic: bics[i], value: response.data })
+         this.setState({ accounts: details })
+         });
+         }*/
+        this.setState({accounts: this.data});
     }
 
 
-    renderAccounts(){
-        return this.state.accounts.map( acc => <AccountDetails key={acc.iban} memberId={acc.memberId} currency={acc.currency} balance={acc.balance} credDeb={acc.credDeb}/>);
+    renderAccounts() {
+        return this.state.accounts.map(acc => <AccountDetails key={acc.iban} memberId={acc.memberId}
+                                                              currency={acc.currency} balance={acc.balance}
+                                                              credDeb={acc.credDeb}/>);
     }
 
     _renderHeader = section => {
@@ -126,9 +139,10 @@ export default class SecondScreen extends Component {
         console.log("Render\n");
         return (
             /*<View style={styles.content}>
-                <Text style={styles.contentText}>{section.content}</Text>
-            </View>*/
-            <AccountDetails memberId={data.memberId} currency={data.currency} balance={data.balance} credDeb={data.credDeb} />
+             <Text style={styles.contentText}>{section.content}</Text>
+             </View>*/
+            <AccountDetails memberId={data.memberId} currency={data.currency} balance={data.balance}
+                            credDeb={data.credDeb}/>
         );
     };
 
@@ -136,7 +150,7 @@ export default class SecondScreen extends Component {
         console.log("Update");
         this.setState(
             {isLoading: false, activeSections: activeSections}
-            );
+        );
     };
 
     _onPress() {
@@ -158,20 +172,20 @@ export default class SecondScreen extends Component {
     render() {
         //const changeScale = this.growAnimated.interpolate({
         //    inputRange: [0, 1],
-       //     outputRange: [1, SIZE],
+        //     outputRange: [1, SIZE],
         //});
         return (
-        <Wallpaper>
-            <Header headerText={'Accounts'}>
-                {}
-            </Header>
-            <Accordion
-                sections={SECTIONS}
-                activeSections={this.state.activeSections}
-                renderHeader={this._renderHeader}
-                renderContent={this._renderContent}
-                onChange={this._updateSections}/>
-        </Wallpaper>
+            <Wallpaper>
+                <Header headerText={'Accounts'}>
+                    {}
+                </Header>
+                <Accordion
+                    sections={SECTIONS}
+                    activeSections={this.state.activeSections}
+                    renderHeader={this._renderHeader}
+                    renderContent={this._renderContent}
+                    onChange={this._updateSections}/>
+            </Wallpaper>
 
         );
     }
@@ -212,7 +226,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginTop: 20
     },
-    header:{
+    header: {
         padding: 10,
         marginLeft: 10,
         marginRight: 10,
