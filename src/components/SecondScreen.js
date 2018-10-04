@@ -5,6 +5,7 @@ import Accordion from "react-native-collapsible/Accordion";
 import api from '../services/api';
 import appConfig from '../config/AppConfig';
 import Header from '../components/Header';
+import Wallpaper from "./Wallpaper";
 
 const SIZE = 40;
 const SECTIONS = [
@@ -59,7 +60,7 @@ export default class SecondScreen extends Component {
     _renderContent = section => {
         return (
             <View style={styles.content}>
-                <Text>{section.content}</Text>
+                <Text style={styles.contentText}>{section.content}</Text>
             </View>
         );
     };
@@ -90,7 +91,7 @@ export default class SecondScreen extends Component {
             outputRange: [1, SIZE],
         });
         return (
-        <View>
+        <Wallpaper>
             <Header headerText={'Accounts'}>
                 {this.renderAccounts()}
             </Header>
@@ -100,7 +101,7 @@ export default class SecondScreen extends Component {
                 renderHeader={this._renderHeader}
                 renderContent={this._renderContent}
                 onChange={this._updateSections}/>
-        </View>
+        </Wallpaper>
 
         );
     }
@@ -156,6 +157,18 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     content: {
-        margin: 30
+        marginTop: 10,
+        marginLeft: 15,
+        marginRight: 15,
+        backgroundColor: 'rgba(52, 52, 52, 0.6)',
+        borderRadius: 5,
+        borderColor: '#cecece',
+        borderWidth: 1,
+        padding: 10
+    },
+    contentText: {
+        textAlign: 'center',
+        fontSize: 12,
+        color: '#fff'
     }
 });
