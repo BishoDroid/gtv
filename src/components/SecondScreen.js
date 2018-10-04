@@ -6,16 +6,24 @@ import api from '../services/api';
 import appConfig from '../config/AppConfig';
 import Header from '../components/Header';
 import Wallpaper from "./Wallpaper";
+import AccountDetails from '../components/AccountDetails';
 
 const SIZE = 40;
 const SECTIONS = [
     {
-        title: 'First',
-        content: 'Lorem hola...'
+        title: 'BKENGB2L',
+        content: 'Lorem hola...',
+        idx: 0
     },
     {
-        title: 'Second',
-        content: 'Lorem bana...'
+        title: 'MARKDEFF',
+        content: 'Lorem bana...',
+        idx: 1
+    },
+    {
+        title: 'BERKDETF',
+        content: 'Lorem bananana...',
+        idx: 2
     }
 ];
 
@@ -26,15 +34,16 @@ export default class SecondScreen extends Component {
             isLoading: false,
             activeSections: [],
             accounts: [],
-            bics: ['BKENGB2L','MARKDEFF']
         };
 
         this._onPress = this._onPress.bind(this);
         this.growAnimated = new Animated.Value(0);
+        this.sendReq = this.sendReq.bind(this);
+        this.renderAccounts = this.renderAccounts.bind(this);
     }
 
     componentWillMount() {
-        let { bics } = this.state;
+        /*let { bics } = this.state;
         let details = [];
         for (let i = 0; i < bics.length; i++) {
             api.post("otapi/"+bics[i]+"/account/details", appConfig.requestJson)
@@ -42,11 +51,65 @@ export default class SecondScreen extends Component {
                     details.push({ bic: bics[i], value: response.data })
                     this.setState({ accounts: details })
                 });
-        }
+        }*/
+        this.sendReq();
 
+        this.timerID = setInterval(
+            () => this.sendReq(),
+            2000
+        );
     }
+
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
+
+    sendReq() {
+        /* Mock data. */
+        let d = new Date().toISOString();
+
+        this.data = [
+            {   bic : 'BKENGB2L',
+                iban : 'DE89370400440532013000',
+                memberId : 'Member A',
+                currency : 'USD',
+                credDeb : 'Credit',
+                balance : (Math.random() * (20000 - 10000) + 10000).toFixed(2),
+                dateTime: d
+            },
+            {   bic : 'BKENGB2L',
+                iban : 'AE89370400440232013000',
+                memberId : 'Member B1',
+                currency : 'EUR',
+                credDeb : 'Credit',
+                balance :(Math.random() * (50000 - 20000) + 20000).toFixed(2),
+                dateTime : d
+            },
+            {   bic : 'BKENGB2L',
+                iban : 'RE89370400440432013000',
+                memberId : 'Member C',
+                credDeb : 'Debit',
+                currency : 'MYR',
+                balance : (Math.random() * (10000 - 5000) + 5000).toFixed(2),
+                dateTime : d
+            }
+        ];
+
+        //let { bics } = this.bics;
+        //let details = [];
+        /*for (let i = 0; i < bics.length; i++) {
+            api.post("otapi/" + bics[i] + "/account/details", appConfig.requestJson)
+                .then(response => {
+                    details.push({ bic: bics[i], value: response.data })
+                    this.setState({ accounts: details })
+                });
+        }*/
+        this.setState({ accounts: this.data });
+    }
+
+
     renderAccounts(){
-        return this.state.accounts.map( account => <Text key={account.value.identification.iban}>{account.value.identification.iban}</Text>);
+        return this.state.accounts.map( acc => <AccountDetails key={acc.iban} memberId={acc.memberId} currency={acc.currency} balance={acc.balance} credDeb={acc.credDeb}/>);
     }
 
     _renderHeader = section => {
@@ -58,15 +121,22 @@ export default class SecondScreen extends Component {
     };
 
     _renderContent = section => {
+        let idx = section.idx;
+        let data = this.data[idx];
+        console.log("Render\n");
         return (
-            <View style={styles.content}>
+            /*<View style={styles.content}>
                 <Text style={styles.contentText}>{section.content}</Text>
-            </View>
+            </View>*/
+            <AccountDetails memberId={data.memberId} currency={data.currency} balance={data.balance} credDeb={data.credDeb} />
         );
     };
 
     _updateSections = activeSections => {
-        this.setState({isLoading: false, activeSections: activeSections});
+        console.log("Update");
+        this.setState(
+            {isLoading: false, activeSections: activeSections}
+            );
     };
 
     _onPress() {
@@ -86,14 +156,14 @@ export default class SecondScreen extends Component {
     }
 
     render() {
-        const changeScale = this.growAnimated.interpolate({
-            inputRange: [0, 1],
-            outputRange: [1, SIZE],
-        });
+        //const changeScale = this.growAnimated.interpolate({
+        //    inputRange: [0, 1],
+       //     outputRange: [1, SIZE],
+        //});
         return (
         <Wallpaper>
             <Header headerText={'Accounts'}>
-                {this.renderAccounts()}
+                {}
             </Header>
             <Accordion
                 sections={SECTIONS}
