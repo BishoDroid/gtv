@@ -9,9 +9,9 @@ export default class AccountDetails extends Component {
     render() {
         return (
             <View style={styles.content}>
-                <Text>{this.props.memberId}</Text>
-                <Text>{this.props.currency + " " + this.props.balance}</Text>
-                <Text>{this.props.credDeb}</Text>
+                <Text style={{color: 'white'}}>{this.props.memberId}</Text>
+                <Text style={{color: 'white'}}>{this.props.currency + " " + this.props.balance}</Text>
+                <Text style={{color: 'white'}}>{this.props.credDeb}</Text>
             </View>
         );
     }
