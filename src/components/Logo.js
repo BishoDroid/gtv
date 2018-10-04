@@ -31,5 +31,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: 'transparent',
     marginTop: 20,
-  },
+  }
 });
