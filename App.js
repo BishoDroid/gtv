@@ -55,7 +55,7 @@ export default class loginAnimation extends Component {
         Notifications.addListener(this.handleNotification);
 }
     render() {
-   this.sendBellowMinimumValueNotification();
+
         return (
             <View style={styles.container}>
                 <Main />
