@@ -56,7 +56,7 @@ export default class SecondScreen extends Component {
 
         this.timerID = setInterval(
             () => this.sendReq(),
-            2000
+            Math.ceil(Math.random() * (3000 - 1000) + 1000))
         );
     }
 
@@ -68,7 +68,7 @@ export default class SecondScreen extends Component {
         /* Mock data. */
         let d = new Date().toISOString();
 
-        this.data = [
+        let data = [
             {   bic : 'BKENGB2L',
                 iban : 'DE89370400440532013000',
                 memberId : 'Member A',
@@ -104,7 +104,7 @@ export default class SecondScreen extends Component {
                     this.setState({ accounts: details })
                 });
         }*/
-        this.setState({ accounts: this.data });
+        this.setState({ accounts: data });
     }
 
 
@@ -122,7 +122,7 @@ export default class SecondScreen extends Component {
 
     _renderContent = section => {
         let idx = section.idx;
-        let data = this.data[idx];
+        let data = this.state.accounts[idx];
         console.log("Render\n");
         return (
             /*<View style={styles.content}>
