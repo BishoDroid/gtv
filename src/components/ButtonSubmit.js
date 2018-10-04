@@ -65,7 +65,7 @@ export default class ButtonSubmit extends Component {
         let result = await Expo.LocalAuthentication.authenticateAsync('Biometric Scan.');
         if (result.success) {
             this.setState({dialogVisible: false});
-            Actions.secondScreen();
+            Actions.homeScreen();
         } else {
             Alert.Alert.alert('Uh oh!', 'Bio-Authentication failed or canceled.');
         }

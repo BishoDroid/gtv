@@ -14,8 +14,10 @@
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-accordion": "^1.0.1",
+    "react-native-chart-kit": "^1.1.7",
     "react-native-collapsible": "^1.0.1",
     "react-native-router-flux": "latest",
-    "react-native-simple-dialogs": "^0.4.1"
+    "react-native-simple-dialogs": "^0.4.1",
+    "react-navigation": "^2.17.0"
   }
 }
