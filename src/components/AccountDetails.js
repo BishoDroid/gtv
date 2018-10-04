@@ -8,15 +8,13 @@ export default class AccountDetails extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.content}>
                 <Text>{this.props.memberId}</Text>
                 <Text>{this.props.currency + " " + this.props.balance}</Text>
                 <Text>{this.props.credDeb}</Text>
-                <Text>{this.props.dateTime}</Text>
             </View>
         );
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -25,4 +23,15 @@ const styles = StyleSheet.create({
         margin: 20,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-    }});
+    },
+    content: {
+        marginTop: 10,
+        marginLeft: 15,
+        marginRight: 15,
+        backgroundColor: 'rgba(52, 52, 52, 0.6)',
+        borderRadius: 5,
+        borderColor: '#cecece',
+        borderWidth: 1,
+        padding: 10
+    }
+});
