@@ -10,17 +10,17 @@ import {Notifications} from "expo";
 const SIZE = 40;
 const SECTIONS = [
     {
-        title: 'MARKDEFF',
+        title: 'CITIUS32',
         content: 'Lorem hola...',
         idx: 0
     },
     {
-        title: 'BKENGB2L',
+        title: 'CITIGB22',
         content: 'Lorem bana...',
         idx: 1
     },
     {
-        title: 'EEANGBYL',
+        title: 'CITIMY20',
         content: 'Lorem bananana...',
         idx: 2
     }
@@ -81,7 +81,7 @@ export default class SecondScreen extends Component {
 
         this.data = [
             {
-                bic: 'MARKDEFF',
+                bic: 'CITIUS32',
                 iban: 'DE89370400440532013000',
                 memberId: 'Member A',
                 currency: 'USD',
@@ -90,7 +90,7 @@ export default class SecondScreen extends Component {
                 dateTime: d
             },
             {
-                bic: 'BKENGB2L',
+                bic: 'CITIGB22',
                 iban: 'AE89370400440232013000',
                 memberId: 'Member B1',
                 currency: 'EUR',
@@ -99,7 +99,7 @@ export default class SecondScreen extends Component {
                 dateTime: d
             },
             {
-                bic: 'EEANGBYL',
+                bic: 'CITIMY20',
                 iban: 'RE89370400440432013000',
                 memberId: 'Member C',
                 credDeb: 'Debit',
