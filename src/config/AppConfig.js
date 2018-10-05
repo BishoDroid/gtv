@@ -136,7 +136,7 @@ export default {
                 {
                     "credit_debit_indicator": "CRDT",
                     "status": "BOOK",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIGB03",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "10000"
@@ -146,7 +146,7 @@ export default {
                 {
                     "credit_debit_indicator": "CRDT",
                     "status": "BOOK",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIGB12",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "500"
@@ -156,7 +156,7 @@ export default {
                 {
                     "credit_debit_indicator": "CRDT",
                     "status": "BOOK",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIGB23",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "85000"
@@ -166,7 +166,7 @@ export default {
                 {
                     "credit_debit_indicator": "CRDT",
                     "status": "BOOK",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIGB30",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "5000"
@@ -176,7 +176,7 @@ export default {
                 {
                     "credit_debit_indicator": "CRDT",
                     "status": "PDNG",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIGB34",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "5000"
@@ -186,7 +186,7 @@ export default {
                 {
                     "credit_debit_indicator": "DBIT",
                     "status": "PDNG",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIGB60",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "5000"
@@ -196,7 +196,7 @@ export default {
                 {
                     "credit_debit_indicator": "DBIT",
                     "status": "PDNG",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIGB70",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "500"
@@ -212,7 +212,7 @@ export default {
 
                     "credit_debit_indicator": "CRDT",
                     "status": "BOOK",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIUS05",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "10000"
@@ -222,7 +222,7 @@ export default {
                 {
                     "credit_debit_indicator": "CRDT",
                     "status": "BOOK",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIUS08",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "500"
@@ -232,7 +232,7 @@ export default {
                 {
                     "credit_debit_indicator": "CRDT",
                     "status": "BOOK",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIUS13",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "85000"
@@ -242,7 +242,7 @@ export default {
                 {
                     "credit_debit_indicator": "CRDT",
                     "status": "BOOK",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIUS15",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "5000"
@@ -252,7 +252,7 @@ export default {
                 {
                     "credit_debit_indicator": "CRDT",
                     "status": "PDNG",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIUS34",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "5000"
@@ -262,7 +262,7 @@ export default {
                 {
                     "credit_debit_indicator": "DBIT",
                     "status": "PDNG",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIUS67",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "5000"
@@ -272,7 +272,7 @@ export default {
                 {
                     "credit_debit_indicator": "DBIT",
                     "status": "PDNG",
-                    "customer": "MARKDEFF",
+                    "customer": "CITIUS78",
                     "amount": {
                         "currency": "EUR",
                         "Amount": "500"

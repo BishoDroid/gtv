@@ -10,20 +10,41 @@ import {Notifications} from "expo";
 const SIZE = 40;
 const SECTIONS = [
     {
-        title: 'CITIUS32',
+        title: 'CITIUS05',
         content: 'Lorem hola...',
         idx: 0
     },
     {
-        title: 'CITIGB22',
+        title: 'CITIUS08',
         content: 'Lorem bana...',
         idx: 1
     },
     {
-        title: 'CITIMY20',
+        title: 'CITIUS13',
         content: 'Lorem bananana...',
         idx: 2
+    },
+    {
+        title: 'CITIUS15',
+        content: 'Lorem bananana...',
+        idx: 3
+    },
+    {
+        title: 'CITIUS34',
+        content: 'Lorem bananana...',
+        idx: 4
+    },
+    {
+        title: 'CITIUS67',
+        content: 'Lorem bananana...',
+        idx: 5
+    },
+    {
+        title: 'CITIUS78',
+        content: 'Lorem bananana...',
+        idx: 6
     }
+
 ];
 
 export default class SecondScreen extends Component {
@@ -81,7 +102,7 @@ export default class SecondScreen extends Component {
 
         this.data = [
             {
-                bic: 'CITIUS32',
+                bic: 'CITIUS05',
                 iban: 'DE89370400440532013000',
                 memberId: 'Member A',
                 currency: 'USD',
@@ -90,23 +111,60 @@ export default class SecondScreen extends Component {
                 dateTime: d
             },
             {
-                bic: 'CITIGB22',
+                bic: 'CITIUS08',
                 iban: 'AE89370400440232013000',
                 memberId: 'Member B1',
-                currency: 'EUR',
+                currency: 'USD',
                 credDeb: 'Credit',
                 balance: (Math.random() * (30000 - 10000) + 10000).toFixed(2),
                 dateTime: d
             },
             {
-                bic: 'CITIMY20',
+                bic: 'CITIUS13',
                 iban: 'RE89370400440432013000',
                 memberId: 'Member C',
                 credDeb: 'Debit',
-                currency: 'MYR',
+                currency: 'USD',
+                balance: (Math.random() * (30000 - 1000) + 1000).toFixed(2),
+                dateTime: d
+            },
+            {
+                bic: 'CITIUS15',
+                iban: 'RE89370400440432013000',
+                memberId: 'Member C',
+                credDeb: 'Debit',
+                currency: 'USD',
+                balance: (Math.random() * (30000 - 1000) + 1000).toFixed(2),
+                dateTime: d
+            },
+            {
+                bic: 'CITIUS34',
+                iban: 'RE89370400440432013000',
+                memberId: 'Member C',
+                credDeb: 'Debit',
+                currency: 'USD',
+                balance: (Math.random() * (30000 - 1000) + 1000).toFixed(2),
+                dateTime: d
+            },
+            {
+                bic: 'CITIUS67',
+                iban: 'RE89370400440432013000',
+                memberId: 'Member C',
+                credDeb: 'Debit',
+                currency: 'USD',
+                balance: (Math.random() * (30000 - 1000) + 1000).toFixed(2),
+                dateTime: d
+            },
+            {
+                bic: 'CITIUS78',
+                iban: 'RE89370400440432013000',
+                memberId: 'Member C',
+                credDeb: 'Debit',
+                currency: 'USD',
                 balance: (Math.random() * (30000 - 1000) + 1000).toFixed(2),
                 dateTime: d
             }
+
         ];
 
         //let { bics } = this.bics;
