@@ -1,34 +1,26 @@
-import React, { Component } from 'react';
-import appConfig from '../config/AppConfig';
-import Dimensions from 'Dimensions';
-import Header from '../components/Header';
-import PostDetails from '../components/PostDetails'
-import Swiper from 'react-native-swiper';
+import React, {Component} from "react";
+import appConfig from "../config/AppConfig";
+import Dimensions from "Dimensions";
+import Header from "../components/Header";
+import PostDetails from "../components/PostDetails";
 import Wallpaper from "./Wallpaper";
-import {
-    StyleSheet,
-    View,
-    Text,
-    ListView,
-    Image,
-    TouchableOpacity,
-    ScrollView,
-} from 'react-native';
+import {ListView, ScrollView, StyleSheet} from "react-native";
 
 
 export default class PostingScreen extends Component {
     constructor(props) {
-      super(props);
-      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-  
-      this.state = {
-        isLoading: false,
-        dataSource: ds.cloneWithRows(appConfig.posting),
-        posting: [],
-        bics: ['BKENGB2L','MARKDEFF']
-      };
-  
+        super(props);
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
+        this.state = {
+            isLoading: false,
+            dataSource: ds.cloneWithRows(appConfig.posting),
+            posting: [],
+            bics: ['BKENGB2L', 'MARKDEFF']
+        };
+
     }
+
     //load posts data
     sendReq() {
         /* Mock data. */
@@ -51,27 +43,28 @@ export default class PostingScreen extends Component {
     }
 
 
-    renderRows(){
-      return appConfig.posting[1].account_postings.map(post => 
-        <PostDetails key={post} postData={post}></PostDetails>
-      );
+    renderRows() {
+        let i=1;
+        return appConfig.posting[1].account_postings.map(post =>
+            <PostDetails key={i++} postData={post}/>
+        );
     }
 
 
     render() {
         console.log(appConfig.posting[1].account_postings);
-    
-        return (
-          <Wallpaper>
 
-            <Header headerText={'Account Posting'}>{}</Header>
-            
-            <ScrollView>
-            {this.renderRows()}    
-            </ScrollView>
-          </Wallpaper>
+        return (
+            <Wallpaper>
+
+                <Header headerText={'Account Posting'}>{}</Header>
+
+                <ScrollView>
+                    {this.renderRows()}
+                </ScrollView>
+            </Wallpaper>
         );
-      }
+    }
 
 }
 
@@ -79,7 +72,7 @@ const DEVICE_WIDTH = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1
+        flex: 1
     },
-   
-  });
+
+});
