@@ -1,10 +1,11 @@
 import React, {Component} from "react";
-import {Animated, Easing, StyleSheet, Text, View} from "react-native";
+import {Animated, Easing, Keyboard, StyleSheet, Text, View} from "react-native";
 import {Actions} from "react-native-router-flux";
 import Accordion from "react-native-collapsible/Accordion";
 import Header from "../components/Header";
 import Wallpaper from "./Wallpaper";
 import AccountDetails from "../components/AccountDetails";
+import {Notifications} from "expo";
 
 const SIZE = 40;
 const SECTIONS = [
@@ -48,6 +49,8 @@ export default class SecondScreen extends Component {
         this.growAnimated = new Animated.Value(0);
         this.sendReq = this.sendReq.bind(this);
         this.renderAccounts = this.renderAccounts.bind(this);
+        this.sendNotification = this.sendNotification.bind(this);
+        this.oldBalance = [0,0,0,0];
     }
 
     componentWillMount() {
@@ -83,7 +86,7 @@ export default class SecondScreen extends Component {
                 memberId: 'Member A',
                 currency: 'USD',
                 credDeb: 'Credit',
-                balance: (Math.random() * (20000 - 10000) + 10000).toFixed(2),
+                balance: (Math.random() * (30000 - 10000) + 10000).toFixed(2),
                 dateTime: d
             },
             {
@@ -92,7 +95,7 @@ export default class SecondScreen extends Component {
                 memberId: 'Member B1',
                 currency: 'EUR',
                 credDeb: 'Credit',
-                balance: (Math.random() * (50000 - 20000) + 20000).toFixed(2),
+                balance: (Math.random() * (30000 - 10000) + 10000).toFixed(2),
                 dateTime: d
             },
             {
@@ -101,7 +104,7 @@ export default class SecondScreen extends Component {
                 memberId: 'Member C',
                 credDeb: 'Debit',
                 currency: 'MYR',
-                balance: (Math.random() * (10000 - 5000) + 5000).toFixed(2),
+                balance: (Math.random() * (30000 - 1000) + 1000).toFixed(2),
                 dateTime: d
             }
         ];
@@ -133,9 +136,37 @@ export default class SecondScreen extends Component {
         );
     };
 
+    sendNotification(msg) {
+        Keyboard.dismiss();
+
+
+        const schedulingOptions = {
+            time: new Date().getTime() + 500
+        }
+
+        // Notifications show only when app is not active.
+        // (ie. another app being used or device's screen is locked)
+        Notifications.scheduleLocalNotificationAsync(
+            msg, schedulingOptions
+        );
+    }
+
     _renderContent = section => {
         let idx = section.idx;
         let data = this.data[idx];
+
+        if (data.balance <= 23000.00 && this.oldBalance[idx] > 23000.00) {
+            this.oldBalance[idx] = data.balance;
+            let msg = {
+                title: data.bic + ' balance is below minimum threshold',
+                body: 'The current balance ' + data.currency + ' ' + data.balance + ' is below minimum threshold.'
+            };
+
+            this.sendNotification(msg);
+        }
+
+        if (data.balance > 23000.00) { this.oldBalance[idx] = data.balance; }
+
         return (
             /*<View style={styles.content}>
              <Text style={styles.contentText}>{section.content}</Text>
